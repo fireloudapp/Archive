@@ -1,0 +1,40 @@
+@inherits LayoutComponentBase
+
+<div class="page">
+    <div class="sidebar" >
+         <NavMenu/>
+    </div>
+
+    <main>
+        <div class="top-row px-2">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="" style="font-size: 24px;font-family: cursive;">
+                    <i class="icofont-butterfly-alt icofont-2x" style="color: lightcoral; font-size: 28px;"></i> 
+                    Edu.Web
+                </a>
+                <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+                    <SfIcon Name="IconName.Justify"></SfIcon>
+                </button>
+            </div>
+            
+            <a href="#" target="_blank">About</a>
+        </div>
+       
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+@code
+{
+    
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

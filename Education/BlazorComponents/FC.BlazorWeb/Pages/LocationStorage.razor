@@ -1,0 +1,41 @@
+﻿@page "/Location-Storage"
+@using BlazorDB
+@using FC.BlazorWeb.Model
+@using Syncfusion.Blazor.DropDowns
+
+@inject IBlazorDbFactory _dbFactory
+@inject HttpClient _http
+
+<h3>LocationStorage</h3>
+
+<div class="control-section">
+    <div class="form-group row">
+        
+        <div class="col-sm-4">
+            <SfAutoComplete TValue="string" TItem="Country" Placeholder="Select Country"
+                            DataSource="_countries" Autofill="false" >
+                <AutoCompleteFieldSettings Value="Name"></AutoCompleteFieldSettings>
+                <AutoCompleteEvents TItem="Country" TValue="string" ValueChange="@SelectedCountry"></AutoCompleteEvents> 
+            </SfAutoComplete>
+        </div>
+        <div class="col-sm-4">
+            <SfAutoComplete TValue="string" TItem="State" Placeholder="Select State"
+                            DataSource="_filteredStates" Autofill="false" >
+                <AutoCompleteFieldSettings Value="Name"></AutoCompleteFieldSettings>
+                <AutoCompleteEvents TItem="State" TValue="string" ValueChange="@SelectedState"></AutoCompleteEvents> 
+            </SfAutoComplete>
+        </div>
+        <div class="col-sm-4">
+            <SfAutoComplete TValue="string" TItem="City" Placeholder="Select Cities"
+                            DataSource="_filteredCities" Autofill="false" >
+                <AutoCompleteFieldSettings Value="Name"></AutoCompleteFieldSettings>
+                <AutoCompleteEvents TItem="City" TValue="string" ValueChange="@SelectedCity"></AutoCompleteEvents> 
+            </SfAutoComplete>
+        </div>
+    </div>
+    
+</div>
+
+@code {
+    
+}

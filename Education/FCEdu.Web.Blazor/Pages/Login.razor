@@ -1,0 +1,43 @@
+﻿@page "/Login"
+
+<PageTitle>Login</PageTitle>
+
+
+<SfCard>
+    <CardHeader Title="Login" 
+            SubTitle="Login to Firecloud School Portal" 
+            ImageUrl="svg/material/login_white_24dp.svg"
+        ></CardHeader>
+    <CardContent EnableSeparator="true">
+         <div class="content-wrapper">
+            
+             <div class="row material" style="margin-top:2px;">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <SfTextBox CssClass="e-outline" Placeholder="User Name"                    
+                        FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <SfTextBox CssClass="e-outline" Placeholder="Password" 
+                    Type="InputType.Password"
+                    FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                </div>
+            </div>
+            
+             <div class="row material" style="margin-top:4px;">
+                 <div class="col-12">
+                     <div class="float-end">
+                         <SfButton IsPrimary="true">Login</SfButton>
+                     </div>                     
+                 </div>
+             </div>
+    
+         </div>
+    </CardContent>
+   
+
+</SfCard>
+
+
+@code {
+
+}

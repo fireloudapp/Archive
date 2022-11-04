@@ -1,0 +1,337 @@
+﻿@page
+@model FC.Admin.Services.Pages.Organization.QuickAdd
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@{
+	ViewData["Title"] = "Add Clients";
+}
+
+
+<!-- Page-header start -->
+<div class="page-header">
+	<div class="row align-items-end">
+		<div class="col-lg-8">
+			<div class="page-header-title">
+				<div class="d-inline">
+					<h4>Customer Management</h4>
+					<!--<span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span> -->
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="page-header-breadcrumb">
+				<ul class="breadcrumb-title">
+					<li class="breadcrumb-item">
+						<a href="#"> <i class="feather icon-home"></i> </a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="#!">Client</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="#!">Add Customer</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Page-header end -->
+<!-- Page-body start -->
+<div class="page-body">
+	<form method="post" data-ajax="true"  id="customerVM"
+								  asp-page-handler="SaveCustomer" id="formCustomerAdd"
+								  data-ajax-method="post"
+								  data-ajax-complete="AddCustomer">
+
+								@Html.AntiForgeryToken()
+	<div class="row">
+		<div class="col-lg-12">
+			@*<div class="sub-title">Default</div>*@
+			<div class="card">
+				<div class="card-block">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs md-tabs" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" data-toggle="tab" href="#client" role="tab">Client Registry</a>
+							<div class="slide"></div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#connectivity" role="tab">Client Connectivity</a>
+							<div class="slide"></div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#subscription" role="tab">Subscription</a>
+							<div class="slide"></div>
+						</li>
+
+					</ul>
+					<!-- Tab panes -->
+					<div class="tab-content card-block">
+						<div class="tab-pane active" id="client" role="tabpanel">
+							
+								<!--#region ClientDetails-->
+								<div class="card z-depth-0 waves-effect">
+									<div class="card-block">
+										<div class="row">
+											<div class="col-12">
+												<h5 class="sub-title">Business Details</h5>
+											</div>
+										</div>
+										<div class="form-group row">
+											<div class="col-sm-4">
+												@*<div class="input-group input-group-sm">
+													<span class="input-group-addon" id="basic-addon8">Name</span>
+													<input type="text" class="form-control form-control-bold" placeholder="input-group-sm" spellcheck="false" data-ms-editor="true">
+												</div>*@
+												<label for="businessName" class="form-label">Business Name <label class="required">*</label> </label>
+												<input type="text" v-model="businessName" class="form-control form-control-bold"
+													   maxlength="150" placeholder="Business Name" name="businessName"
+													   spellcheck="false" required
+													   data-ms-editor="true" />
+											</div>
+											<div class="col-sm-4">
+												<label for="businessType" class="form-label">Business Type <label class="required">*</label></label>
+												<select id="businessType" name="businessType" v-model="businessType" required class="form-control form-control-primary">
+													<option value="">Select Business Type</option>
+													<option v-for="option in businessTypeList" v-bind:value="option.value"> {{ option.text }}</option>
+												</select>
+												<!-- Ref : https://nnroad.com/blog/types-of-business-entities-in-india/-->
+											</div>
+											<div class="col-sm-4">
+												<label for="businessCategory" class="form-label">Business Category <label class="required">*</label></label>
+												<select name="businessCategory" v-model="businessCategory" required class="form-control form-control-primary">
+													<option value="">Select Business Category</option>
+													<option v-for="option in businessCategoryList" v-bind:value="option.value"> {{ option.text }}</option>
+												</select>
+
+												
+												<!--
+													Ref: https://www.expowest.com/en/register/business-categories.html
+												-->
+											</div>
+										</div>
+										<div class="form-group row">
+											<div class="col-sm-12">
+												<textarea rows="5" cols="5" v-model="description" class="form-control"
+														  maxlength="300" name="description" 
+														  placeholder="Business Description" spellcheck="true" data-ms-editor="true"></textarea>
+											</div>
+										</div>
+										<div class="form-group row">
+											<div class="col-sm-4">
+												<input type="text" v-model="logo" class="form-control"
+													   maxlength="150" placeholder="Logo" name="logo" spellcheck="false"
+													   
+													   data-ms-editor="true" />
+											</div>
+											<div class="col-sm-4">
+												<input type="url" v-model="website" class="form-control"
+													   maxlength="150" placeholder="Website" name="website" spellcheck="false"													   
+													   data-ms-editor="true" />
+											</div>
+											<div class="col-sm-4">
+												<input type="text" v-model="gstin" class="form-control"
+													   maxlength="20" placeholder="GSTIN or Business Unique Id" name="gstin" spellcheck="false"
+													   
+													   data-ms-editor="true" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--#endregion -->
+
+								<!--#region Contact Details-->
+								<div class="card">
+									<div class="card-block">
+										<div class="row">
+											<div class="col-12">
+												<h5 class="sub-title">Contact Details</h5>
+											</div>
+										</div>
+										<div class="form-group row">
+											<div class="col-sm-12">
+												<input type="text" v-model="addressLine_1" class="form-control"													  
+													   maxlength="150" placeholder="Address Line 1" name="addressLine_1" spellcheck="false"
+													   data-ms-editor="true" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<div class="col-sm-12">
+												<input type="text" v-model="addressLine_2" class="form-control"													   
+													   maxlength="150" placeholder="Address Line 2" name="addressLine_2" spellcheck="false"
+													   data-ms-editor="true" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<div class="col-sm-3">
+												<select name="cityId" v-model="cityId" class="form-control form-control-primary">
+													<option value="">City</option>
+													<option value="1">Chennai</option>
+													<option value="2">Madurai</option>
+													<option value="3">Thiruchi</option>
+												</select>
+											</div>
+											<div class="col-sm-3">
+												<select name="stateId" v-model="stateId"  class="form-control form-control-primary">
+													<option value="">State</option>
+													<option value="1">TamilNadu</option>
+													<option value="2">Karnataka</option>
+													<option value="3">Kerala</option>
+												</select>
+											</div>
+											<div class="col-sm-3">
+												<select name="countryId" v-model="countryId"  class="form-control form-control-primary">
+													<option value="">Country</option>
+													<option value="1">India</option>
+													<option value="2">Srilanka</option>
+													<option value="3">Bangladesh</option>
+												</select>
+											</div>
+											<div class="col-sm-3">
+												<input type="number" v-model="postalCode" class="form-control"
+													   maxlength="15" placeholder="Postal Code" name="postalCode" spellcheck="false"
+													   data-ms-editor="true" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<div class="col-sm-6">
+												<input type="tel" v-model="phone" class="form-control" max="15" min="7"												   
+													   maxlength="15" placeholder="Phone" name="phone" spellcheck="false"
+													   data-ms-editor="true" />
+											</div>
+											<div class="col-sm-6">
+												<input type="email" v-model="email" class="form-control"													   
+													   maxlength="50" placeholder="Email Address" name="email" spellcheck="false"
+													   data-ms-editor="true" />
+											</div>
+										</div>
+
+									</div>
+								</div>
+								<!--#endregion -->
+
+								<!--#region Subscription-->
+								<div class="card">
+									<div class="card-block">
+										<div class="row">
+											<div class="col-12">
+												<h5 class="sub-title">Activation</h5>
+											</div>
+										</div>
+										<div class="form-group row">
+											<div class="col-sm-4">
+
+												<div class="checkbox-fade fade-in-primary">
+                                                    <label>
+                                                        <input type="checkbox" id="activateActivate" 
+														   v-on:click="activated"
+														   v-model="activateActivate"	>
+                                                        <span class="cr">
+                                                            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                                                        </span>
+                                                        <span>Activate </span>
+                                                    </label>
+													<input type="hidden" id="isActive" name="isActive" v-model="activateActivate" readonly />
+                                                </div>
+												
+											</div>
+											<div class="col-sm-4">
+
+												<div class="border-checkbox-group border-checkbox-group-primary">
+													<select name="activateNoOfDays" v-model="activateNoOfDays"															
+															required class="form-control form-control-primary">
+														<option value="">Select Days to be Active</option>
+														<option v-for="option in activationDaysList" v-bind:value="option.value"> {{ option.text }}</option>
+													</select>
+												</div>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<!--#endregion -->
+								<input type="hidden" v-model="id" name="id" />
+
+						</div>
+						<div class="tab-pane" id="connectivity" role="tabpanel">
+							<!--#region Client Connection Settings-->
+								<div class="card">
+									<div class="card-block">
+										<div class="row">
+											<div class="col-12">
+												<h5 class="sub-title">Connectivity</h5>
+											</div>
+										</div>
+										<div class="form-group row">
+											<div class="col-sm-8">
+												<label for="ClientKey" class="form-label">Client Key </label>
+												<input type="text" v-model="ClientKey" class="form-control form-control-bold"
+													   maxlength="100" placeholder="Client Key" name="ClientKey" readonly
+													   spellcheck="false" 
+													   data-ms-editor="true" />												
+											</div>
+											<div class="col-sm-4">
+												<label for="DBName" class="form-label">Database Name </label>
+												<input type="text" v-model="DBName" class="form-control form-control-bold"
+													   maxlength="100" placeholder="Database Name" name="DBName"
+													   spellcheck="false" readonly
+													   data-ms-editor="true" />												
+											</div>
+										</div>
+											<div class="form-group row">
+												<div class="col-sm-12">
+
+													<label for="ClientConnectionString" class="form-label">Connection String </label>
+													<input type="text" v-model="ClientConnectionString" class="form-control form-control-bold"
+														   maxlength="300" placeholder="Eg. User Id=FCPos;Password=System@1234;Server=localhost;Port=5432;Database=FC-Common;" name="ClientConnectionString"
+														   spellcheck="false" 
+														   data-ms-editor="true" />
+												</div>
+											</div>
+
+										</div>
+									</div>
+								
+								<!--#endregion -->						
+							@*@await Html.PartialAsync("~/Pages/Folder/_PartialName.cshtml")*@
+						</div>
+						<div class="tab-pane" id="subscription" role="tabpanel">
+							<p class="m-0">3. This is ...</p>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		<div class="card">
+			<div class="card-block">
+				<div class="float-right">
+					<button id="reset" type="reset" class="btn btn-inverse"
+							aria-hidden="true">
+						Reset
+					</button>
+					<input type="submit" id="accountSubmit"
+							class="btn btn-primary" value="Save" />
+					<environment names="Development">
+						<input id="btnFake" v-on:click="getFake" type="button" class="btn btn-warning" value="Fake" />
+					</environment>
+				</div>
+			</div>
+			
+		</div>
+	
+	
+	</form>
+</div>
+<!-- Page-body end -->
+@section Scripts
+{
+	<script type="text/javascript" src="~/js/appjs/quickAdd.js"></script>
+}
+

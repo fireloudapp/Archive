@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <SupportedPlatform Include="browser" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FC.Edu.Domain" Version="0.0.0.55" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
+        <PackageReference Include="Syncfusion.Blazor.Cards" Version="19.4.0.56" />
+        <PackageReference Include="Syncfusion.Blazor.DropDowns" Version="19.4.0.56" />
+        <PackageReference Include="Syncfusion.Blazor.Navigations" Version="19.4.0.56" />
+    </ItemGroup>
+
+</Project>

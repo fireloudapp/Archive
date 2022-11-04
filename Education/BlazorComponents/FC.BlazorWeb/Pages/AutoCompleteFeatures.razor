@@ -1,0 +1,67 @@
+﻿@page "/autocomplete-features"
+@using Syncfusion.Blazor
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Data
+@using FC.BlazorWeb.Components
+
+@layout Landing
+
+<h2>AutoComplete</h2>
+<br/>
+<div id = "ControlRegion">
+  <div class="control-section">
+    <div id='remote-data'>
+       <h4>Remote Data</h4>
+       <SfAutoComplete TValue="string" TItem="OrderDetails" Placeholder="Select a name" Query="@RemoteDataQuery" Autofill="true">
+           <SfDataManager Url="https://services.odata.org/V4/Northwind/Northwind.svc/" CrossDomain="true" Adaptor="Syncfusion.Blazor.Adaptors.ODataV4Adaptor"></SfDataManager>
+          <AutoCompleteFieldSettings Text="CustomerID" Value="CustomerID"></AutoCompleteFieldSettings>
+       </SfAutoComplete>
+    </div>
+</div>
+</div>
+<br/>
+<div>
+  <h3>Selected Features:</h3>
+    <ul class="ulstyle">
+      <li class="list"> AutoComplete Samples - Remote Data</li>
+      <li class="list"> Theme - Material</li>
+    </ul>
+</div>
+<br/>
+
+
+<style>
+    #remote-data {
+        width: 35%;
+        margin: 0 auto;
+        padding: 3%;
+    }
+    .ulstyle {
+        margin: 0px;
+        padding-left: 20px;
+        display: inline-block;
+    }
+    .list {
+    float: left;
+    line-height: 20px;
+    margin: 10px;
+    min-width: 330px;
+    }
+</style>
+@code{
+    public Query RemoteDataQuery = new Query().From("Customers").Select(new List<string> { "CustomerID" }).Take(6).RequiresCount();
+    public class OrderDetails
+    {
+        public int? OrderID { get; set; }
+        public string CustomerID { get; set; }
+        public int? EmployeeID { get; set; }
+        public double? Freight { get; set; }
+        public string ShipCity { get; set; }
+        public bool Verified { get; set; }
+        public DateTime? OrderDate { get; set; }
+        public string ShipName { get; set; }
+        public string ShipCountry { get; set; }
+        public DateTime? ShippedDate { get; set; }
+        public string ShipAddress { get; set; }
+    }
+}

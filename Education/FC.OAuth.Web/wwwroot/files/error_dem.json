@@ -1,0 +1,24 @@
+{
+  "ClassName": "System.Data.SqlClient.SqlException",
+  "Message": "Cannot open database \"POS1\" requested by the login. The login failed.\r\nLogin failed for user 'AS\\rr210250'.",
+  "Data": {
+    "HelpLink.ProdName": "Microsoft SQL Server",
+    "HelpLink.EvtSrc": "MSSQLServer",
+    "HelpLink.EvtID": "4060",
+    "HelpLink.BaseHelpUrl": "https://go.microsoft.com/fwlink",
+    "HelpLink.LinkId": "20476",
+    "SqlError 1": "System.Data.SqlClient.SqlError: Cannot open database \"POS1\" requested by the login. The login failed.",
+    "SqlError 2": "System.Data.SqlClient.SqlError: Login failed for user 'AS\\rr210250'."
+  },
+  "InnerException": null,
+  "HelpURL": null,
+  "StackTraceString": "   at new System.Data.SqlClient.SqlInternalConnectionTds(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, object providerInfo, string newPassword, SecureString newSecurePassword, bool redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, bool applyTransientFaultHandling, string accessToken)\r\n   at DbConnectionInternal System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)\r\n   at DbConnectionInternal System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)\r\n   at DbConnectionInternal System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)\r\n   at DbConnectionInternal System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)\r\n   at bool System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, uint waitForMultipleObjectsTimeout, bool allowCreate, bool onlyOneCheckConnection, DbConnectionOptions userOptions, out DbConnectionInternal connection) x 2\r\n   at bool System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource<DbConnectionInternal> retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, out DbConnectionInternal connection)\r\n   at bool System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource<DbConnectionInternal> retry, DbConnectionOptions userOptions)\r\n   at bool System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource<DbConnectionInternal> retry, DbConnectionOptions userOptions)\r\n   at bool System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource<DbConnectionInternal> retry)\r\n   at void System.Data.SqlClient.SqlConnection.Open()\r\n   at T FS.SQLite.DataAccess.GenericRepository.ExecuteScalar<T>(GenericParameter parameter) in C:/Works/_FireCloudApps/PointOfSales/Library/SysemGeneric.SQLite.Data/GenericRepository.cs:line 100\r\n   at Order FC.POS.Orders.Command.CreateOrder.CommandHandler(Order sourceModel) in C:/Works/_FireCloudApps/PointOfSales/FC.POS.App/FC.POS.Orders/Command/CreateOrder.cs:line 33\r\n   at void FC.POS.App.OrderTest.OrderInvoke.Create(string dbCon) in C:/Works/_FireCloudApps/PointOfSales/FC.POS.App/FC.POS.App/OrderTest/OrderInvoke.cs:line 119",
+  "RemoteStackTraceString": null,
+  "RemoteStackIndex": 0,
+  "ExceptionMethod": null,
+  "HResult": -2146232060,
+  "Source": "Core .Net SqlClient Data Provider",
+  "WatsonBuckets": null,
+  "Errors": null,
+  "ClientConnectionId": "d43d7a49-aef3-4f0e-a657-69cc531ff70f"
+}

@@ -1,0 +1,521 @@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>@ViewData["Title"] - Firecoud App - Organization</title>
+	<environment names="Development">
+		@*<meta http-equiv="refresh" content="15"> *@<!-- To be remoed-->
+	</environment>
+	<environment names="Production">
+		@*<meta http-equiv="refresh" content="15"> *@<!-- To be remoed-->
+	</environment>
+
+
+	<!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 10]>
+	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	  <![endif]-->
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="#">
+	<meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+	<meta name="author" content="#">
+	<!-- Favicon icon -->
+	<link rel="icon" href="~/favicon.ico" type="image/x-icon">
+	<environment names="Development">
+		<!-- Load from Local -->
+		<!-- ico font -->
+		<link rel="stylesheet" type="text/css" href="~/files/assets/icon/ion-icon/css/ionicons.min.css" />
+		<!-- Required Fremwork -->
+		<link rel="stylesheet" type="text/css" href="~/files/bower-components/bootstrap/css/bootstrap.min.css">
+		<!-- feather Awesome -->
+		<link rel="stylesheet" type="text/css" href="~/files/assets/icon/feather/css/feather.css">
+		<!-- Style.css -->
+		<link rel="stylesheet" type="text/css" href="~/files/assets/css/style.css">
+		<link rel="stylesheet" type="text/css" href="~/files/assets/css/jquery.mCustomScrollbar.css">
+		<!-- font awesome -->
+		<link rel="stylesheet" type="text/css" href="..\files\assets\icon\font-awesome\css\font-awesome.min.css">
+		<!-- ico font -->
+		<link rel="stylesheet" type="text/css" href="..\files\assets\icon\icofont\css\icofont.css">
+
+		<!-- Google font-->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">	
+		<!-- boot model.css  https://codepen.io/antoncabon/pen/WxQLbM Model Dialog -->
+		<link rel="stylesheet" type="text/css" href="~/files/assets/css/boot-model.css">
+		<!-- bootstrap Table Css -->
+		<link href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css" rel="stylesheet">
+
+		<script type="text/javascript" src="~/lib/vuejs/vue.dev.js"></script>
+		<script type="text/javascript" src="~/files/bower-components/jquery/js/jquery.min.js"></script>
+	</environment>
+
+	<environment names="Production">
+		<!-- Load from CDN -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons-core.min.css" integrity="sha512-OmevVDECSDeo7M4G+Nvh0+VLVGS2XnEOkXWJcJ0TRom3GpGgc/ryQIgpRZw20mb5eR2U0sqsm33MaR8yD1zdsQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />		
+		<!-- Required Fremwork -->
+		<!-- CSS only -->
+		@*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+*@
+		<link rel="stylesheet" type="text/css" href="~/files/bower-components/bootstrap/css/bootstrap.min.css">
+
+		@*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">*@
+		<!-- feather Awesome -->
+		<link rel="stylesheet" type="text/css" href="~/files/assets/icon/feather/css/feather.css">
+		<!-- Style.css -->
+		<link rel="stylesheet" type="text/css" href="~/files/assets/css/style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.css" integrity="sha512-fxF1t7b0mpb/ytjBeSu/OpgXxCVcX5/O8AJGYvHaWmNfi/lYLtttitFK17K4iKBva4iU9dcZ+BIV7dyD/nDdSw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<!-- font awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" integrity="sha512-P9vJUXK+LyvAzj8otTOKzdfF1F3UYVl13+F8Fof8/2QNb8Twd6Vb+VD52I7+87tex9UXxnzPgWA3rH96RExA7A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<!-- ico font -->
+		<link rel="stylesheet" type="text/css" href="..\files\assets\icon\icofont\css\icofont.css">
+			<!-- Google font-->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">	
+		<!-- boot model.css  https://codepen.io/antoncabon/pen/WxQLbM Model Dialog -->
+		<link rel="stylesheet" type="text/css" href="~/files/assets/css/boot-model.css">
+		<!-- bootstrap Table Css -->
+		<link href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css" rel="stylesheet">
+
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	</environment>
+	<link rel="stylesheet" type="text/css" href="~/css/custom-style.css">	
+
+</head>
+
+<body>
+	<!-- Pre-loader start -->
+	<div class="theme-loader">
+		<div class="ball-scale">
+			<div class='contain'>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Pre-loader end -->
+	<div id="pcoded" class="pcoded">
+		<div class="pcoded-overlay-box"></div>
+		<div class="pcoded-container navbar-wrapper">
+
+			<nav class="navbar header-navbar pcoded-header">
+				<div class="navbar-wrapper">
+
+					<div class="navbar-logo">
+						<a class="mobile-menu" id="mobile-collapse" href="#!">
+							<i class="feather icon-menu"></i>
+						</a>
+						<a href="index-1.htm">
+							<img class="img-fluid" src="~/files/assets/images/logo.png" alt="Theme-Logo">
+						</a>
+						<a class="mobile-options">
+							<i class="feather icon-more-horizontal"></i>
+						</a>
+					</div>
+
+					<div class="navbar-container container-fluid">
+						<ul class="nav-left">
+							<li class="header-search">
+								<div class="main-search morphsearch-search">
+									<div class="input-group">
+										<span class="input-group-addon search-close"><i class="feather icon-x"></i></span>
+										<input type="text" class="form-control">
+										<span class="input-group-addon search-btn"><i class="feather icon-search"></i></span>
+									</div>
+								</div>
+							</li>
+							<li>
+								<a href="#!" onclick="javascript:toggleFullScreen()">
+									<i class="feather icon-maximize full-screen"></i>
+								</a>
+							</li>
+						</ul>
+						<ul class="nav-right">
+
+							<li class="user-profile header-notification">
+								<div class="dropdown-primary dropdown">
+									<div class="dropdown-toggle" data-toggle="dropdown">
+										<img src="~/files/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+										<span>@HttpContextAccessor.HttpContext.Session.GetString("UserName")</span>
+										<i class="feather icon-chevron-down"></i>
+									</div>
+									<ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn"
+										data-dropdown-out="fadeOut">
+										<li>
+											<a href="#!">
+												<i class="feather icon-settings"></i> Settings
+											</a>
+										</li>
+										<li>
+											<a href="user-profile.htm">
+												<i class="feather icon-user"></i> Profile
+											</a>
+										</li>
+										<li>
+											<a href="email-inbox.htm">
+												<i class="feather icon-mail"></i> My Messages
+											</a>
+										</li>
+										<li>
+											<a href="auth-lock-screen.htm">
+												<i class="feather icon-lock"></i> Lock Screen
+											</a>
+										</li>
+										<li>
+											<a href="auth-normal-sign-in.htm">
+												<i class="feather icon-log-out"></i> Logout
+											</a>
+										</li>
+									</ul>
+
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<!-- Sidebar chat start -->
+			<div id="sidebar" class="users p-chat-user showChat">
+				<div class="had-container">
+					<div class="card card_main p-fixed users-main">
+						<div class="user-box">
+							<div class="chat-inner-header">
+								<div class="back_chatBox">
+									<div class="right-icon-control">
+										<input type="text" class="form-control  search-text" placeholder="Search Friend" id="search-friends">
+										<div class="form-icon">
+											<i class="icofont icofont-search"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="main-friend-list">
+								<div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+									<a class="media-left" href="#!">
+										<img class="media-object img-radius img-radius" src="~/files/assets/images/avatar-3.jpg" alt="Generic placeholder image ">
+										<div class="live-status bg-success"></div>
+									</a>
+									<div class="media-body">
+										<div class="f-13 chat-header">Josephin Doe</div>
+									</div>
+								</div>
+								<div class="media userlist-box" data-id="2" data-status="online" data-username="Lary Doe" data-toggle="tooltip" data-placement="left" title="Lary Doe">
+									<a class="media-left" href="#!">
+										<img class="media-object img-radius" src="~/files/assets/images/avatar-2.jpg" alt="Generic placeholder image">
+										<div class="live-status bg-success"></div>
+									</a>
+									<div class="media-body">
+										<div class="f-13 chat-header">Lary Doe</div>
+									</div>
+								</div>
+								<div class="media userlist-box" data-id="3" data-status="online" data-username="Alice" data-toggle="tooltip" data-placement="left" title="Alice">
+									<a class="media-left" href="#!">
+										<img class="media-object img-radius" src="~/files/assets/images/avatar-4.jpg" alt="Generic placeholder image">
+										<div class="live-status bg-success"></div>
+									</a>
+									<div class="media-body">
+										<div class="f-13 chat-header">Alice</div>
+									</div>
+								</div>
+								<div class="media userlist-box" data-id="4" data-status="online" data-username="Alia" data-toggle="tooltip" data-placement="left" title="Alia">
+									<a class="media-left" href="#!">
+										<img class="media-object img-radius" src="~/files/assets/images/avatar-3.jpg" alt="Generic placeholder image">
+										<div class="live-status bg-success"></div>
+									</a>
+									<div class="media-body">
+										<div class="f-13 chat-header">Alia</div>
+									</div>
+								</div>
+								<div class="media userlist-box" data-id="5" data-status="online" data-username="Suzen" data-toggle="tooltip" data-placement="left" title="Suzen">
+									<a class="media-left" href="#!">
+										<img class="media-object img-radius" src="~/files/assets/images/avatar-2.jpg" alt="Generic placeholder image">
+										<div class="live-status bg-success"></div>
+									</a>
+									<div class="media-body">
+										<div class="f-13 chat-header">Suzen</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Sidebar inner chat start-->
+			<div class="showChat_inner">
+				<div class="media chat-inner-header">
+					<a class="back_chatBox">
+						<i class="feather icon-chevron-left"></i> Josephin Doe
+					</a>
+				</div>
+				<div class="media chat-messages">
+					<a class="media-left photo-table" href="#!">
+						<img class="media-object img-radius img-radius m-t-5" src="~/files/assets/images/avatar-3.jpg" alt="Generic placeholder image">
+					</a>
+					<div class="media-body chat-menu-content">
+						<div class="">
+							<p class="chat-cont">I'm just looking around. Will you tell me something about yourself?</p>
+							<p class="chat-time">8:20 a.m.</p>
+						</div>
+					</div>
+				</div>
+				<div class="media chat-messages">
+					<div class="media-body chat-menu-reply">
+						<div class="">
+							<p class="chat-cont">I'm just looking around. Will you tell me something about yourself?</p>
+							<p class="chat-time">8:20 a.m.</p>
+						</div>
+					</div>
+					<div class="media-right photo-table">
+						<a href="#!">
+							<img class="media-object img-radius img-radius m-t-5" src="~/files/assets/images/avatar-4.jpg" alt="Generic placeholder image">
+						</a>
+					</div>
+				</div>
+				<div class="chat-reply-box p-b-20">
+					<div class="right-icon-control">
+						<input type="text" class="form-control search-text" placeholder="Share Your Thoughts">
+						<div class="form-icon">
+							<i class="feather icon-navigation"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Sidebar inner chat end-->
+			<div class="pcoded-main-container">
+				<div class="pcoded-wrapper">
+					<nav class="pcoded-navbar">
+						<div class="pcoded-inner-navbar main-menu">
+							<div class="pcoded-navigatio-lavel">Navigation</div>
+							<ul class="pcoded-item pcoded-left-item">
+								<li class="pcoded-hasmenu @ViewData["ActivateDashboard"]">
+									<a href="javascript:void(0)">
+										<span class="pcoded-micon"><i class="feather icon-home"></i></span>
+										<span class="pcoded-mtext">Dashboard</span>
+									</a>
+									<ul class="pcoded-submenu">
+										<li class="@ViewData["ActivateOverview"]">
+											<a href="/Index">
+												<span class="pcoded-mtext">Overview</span>
+											</a>
+										</li>
+										<li class="">
+											<a href="dashboard-crm.htm">
+												<span class="pcoded-mtext">Sales</span>
+											</a>
+										</li>
+										<li class=" ">
+											<a href="dashboard-analytics.htm">
+												<span class="pcoded-mtext">Product</span>
+												<span class="pcoded-badge label label-info ">NEW</span>
+											</a>
+										</li>
+									</ul>
+								</li>
+
+							</ul>
+							<div class="pcoded-navigatio-lavel">Organization</div>
+							<ul class="pcoded-item pcoded-left-item">
+								<li class="pcoded-hasmenu @ViewData["ActivateClient"]">
+									<a href="javascript:void(0)">
+										<span class="pcoded-micon"><i class="feather icon-box"></i></span>
+										<span class="pcoded-mtext">Clients</span>
+									</a>
+									<ul class="pcoded-submenu">
+										<li class="@ViewData["ActivateQuickAdd"]">
+											<a href="/Organization/QuickAdd">
+												<span class="pcoded-mtext">Add New</span>
+											</a>
+										</li>
+										<li class="@ViewData["ActivateQuickView"]">
+											<a href="/Organization/QuickView">
+												<span class="pcoded-mtext">Quick View</span>
+											</a>
+										</li>
+										<li class=" ">
+											<a href="/Settings">
+												<span class="pcoded-mtext">Settings</span>
+											</a>
+										</li>
+
+									</ul>
+								</li>
+
+							</ul>
+
+
+							<div class="pcoded-navigatio-lavel">Support</div>
+							<ul class="pcoded-item pcoded-left-item">
+								<li class="">
+									<a href="http://html.codedthemes.com/Adminty/doc" target="_blank">
+										<span class="pcoded-micon"><i class="feather icon-monitor"></i></span>
+										<span class="pcoded-mtext">Documentation</span>
+									</a>
+								</li>
+								<li class="">
+									<a href="#" target="_blank">
+										<span class="pcoded-micon"><i class="feather icon-help-circle"></i></span>
+										<span class="pcoded-mtext">Submit Issue</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+					<div class="pcoded-content">
+						<div class="pcoded-inner-content">
+							<div class="main-body">
+								<div class="page-wrapper">
+
+									@RenderBody()
+								</div>
+
+								@*<div id="styleSelector">
+									<!-- Side cornor which is used for theme customization is removed. -->
+									</div>*@
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<environment names="Development">
+		<!-- Required Jquery -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js" integrity="sha512-DedNBWPF0hLGUPNbCYfj8qjlEnNE92Fqn7xd3Sscfu7ipy7Zu33unHdugqRD3c4Vj7/yLv+slqZhMls/4Oc7Zg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<!-- Cookie https://github.com/js-cookie/js-cookie -->
+		<script src="~/js/js.cookie.min.js" type="text/javascript"></script>		
+		<script type="text/javascript" src="~/files/bower-components/jquery-ui/js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="~/files/bower-components/popper.js/js/popper.min.js"></script>
+		<script type="text/javascript" src="~/files/bower-components/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="~/js/validation.js"></script>
+		<!-- jquery slimscroll js -->
+		<script type="text/javascript" src="~/files/bower-components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
+		<!-- modernizr js -->
+		<script type="text/javascript" src="~/files/bower-components/modernizr/js/modernizr.js"></script>
+		<!-- Chart js -->
+		<script type="text/javascript" src="~/files/bower-components/chart.js/js/Chart.js"></script>
+		<!-- amchart js -->
+		<script src="~/files/assets/pages/widget/amchart/amcharts.js"></script>
+		<script src="~/files/assets/pages/widget/amchart/serial.js"></script>
+		<script src="~/files/assets/pages/widget/amchart/light.js"></script>
+		<script src="~/files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+		@*<script type="text/javascript" src="~/files/assets/js/SmoothScroll.js"></script>*@
+		<script src="~/files/assets/js/pcoded.min.js"></script>
+		<!-- sweet alert modal.js intialize js -->
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js'></script>
+		<script type="text/javascript" src="~/files/assets/js/boot-model.js"></script>
+		 <!-- Accordion js -->
+		<script type="text/javascript" src="~/files/assets/pages/accordion/accordion.js"></script>
+		<!-- Bootstrap Table JS-->
+		<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+		<!-- custom js -->
+		<script src="~/files/assets/js/vartical-layout.min.js"></script>
+		<script type="text/javascript" src="~/files/assets/js/script.min.js"></script>
+	</environment>
+
+	<environment names="Production">
+		<!-- Required Jquery -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js" integrity="sha512-DedNBWPF0hLGUPNbCYfj8qjlEnNE92Fqn7xd3Sscfu7ipy7Zu33unHdugqRD3c4Vj7/yLv+slqZhMls/4Oc7Zg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<!-- Cookie https://github.com/js-cookie/js-cookie -->
+		<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js" integrity="sha256-0H3Nuz3aug3afVbUlsu12Puxva3CP4EhJtPExqs54Vg=" crossorigin="anonymous"></script>		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>	
+		@*<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.1/umd/popper.min.js" integrity="sha512-8jeQKzUKh/0pqnK24AfqZYxlQ8JdQjl9gGONwGwKbJiEaAPkD3eoIjz3IuX4IrP+dnxkchGUeWdXLazLHin+UQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>		
+		<script type="text/javascript" src="~/files/bower-components/bootstrap/js/bootstrap.min.js"></script>*@
+		<!-- JavaScript Bundle with Popper -->
+		@*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>*@
+
+		<script type="text/javascript" src="~/files/bower-components/popper.js/js/popper.min.js"></script>
+		<script type="text/javascript" src="~/files/bower-components/bootstrap/js/bootstrap.min.js"></script>
+
+		<script type="text/javascript" src="~/js/validation.js"></script>
+		
+		
+		<!-- jquery slimscroll js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js" integrity="sha512-cJMgI2OtiquRH4L9u+WQW+mz828vmdp9ljOcm/vKTQ7+ydQUktrPVewlykMgozPP+NUBbHdeifE6iJ6UVjNw5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<!-- modernizr js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" integrity="sha512-3n19xznO0ubPpSwYCRRBgHh63DrV+bdZfHK52b1esvId4GsfwStQNPJFjeQos2h3JwCmZl0/LgLxSKMAI55hgw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<!-- Chart js -->		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<!-- amchart js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/amcharts.js" integrity="sha512-PEzmoGmMqKKBVwfe025/Qs9fx7FHwfUzuAqUIwad/t10LOMkY/9ULED7/w8rzZ7FhhEDhmPKr1qs08sEB3bZoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js" integrity="sha512-Yk47FuYNtuINE1w+t/KT4BQ7JaycTCcrvlSvdK/jry6Kcxqg5vN7/svVWCxZykVzzJHaxXk5T9jnFemZHSYgnw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>		
+		@*<script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha512-HaoDYc3PGduguBWOSToNc0AWGHBi2Y432Ssp3wNIdlOzrunCtB2qq6FrhtPbo+PlbvRbyi86dr5VQx61eg/daQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
+		<script src="~/files/assets/js/pcoded.min.js"></script>
+		<!-- sweet alert modal.js intialize js -->
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js'></script>
+		<script type="text/javascript" src="~/files/assets/js/boot-model.js"></script>
+		 <!-- Accordion js -->
+		<script type="text/javascript" src="~/files/assets/pages/accordion/accordion.js"></script>
+		<!-- Bootstrap Table JS-->
+		<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+		<!-- custom js -->
+		<script src="~/files/assets/js/vartical-layout.min.js"></script>
+		<script type="text/javascript" src="~/files/assets/js/script.min.js"></script>
+
+		
+	</environment>	
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js'></script>
+
+		<script type="text/javascript" src="~/js/appjs/utility.js"></script>
+		<script type="text/javascript" src="~/js/appjs/apiURL.js"></script>
+		<script type="text/javascript" src="~/js/appjs/ajaxUtility.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-23581568-13');
+	</script>
+
+	@await RenderSectionAsync("Scripts", required: false)
+
+
+</body>
+
+</html>
+

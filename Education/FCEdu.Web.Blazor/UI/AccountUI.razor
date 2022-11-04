@@ -1,0 +1,110 @@
+﻿@using FC.Edu.Domain
+
+<SfCard>
+    <CardHeader Title="Account/Client Management" 
+                SubTitle="Manage client accounts by enabling or disabling based on the subscription." 
+                ImageUrl="svg/client.svg"
+    ></CardHeader>
+    
+    <CardContent EnableSeparator="true">
+        <div class="content-wrapper">
+            
+            <div class="row material" style="margin-top:2px;">
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <SfTextBox CssClass="e-outline" Placeholder="Account Name" 
+                               Value="@_account.BusinessName"
+                               FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <SfDropDownList TValue="string" TItem="BusinessType" Placeholder="Select a Business Type"
+                                    FloatLabelType="@FloatLabelType.Always"
+                                    CssClass="e-outline"
+                                    DataSource="@_businessTypes">
+                        <DropDownListEvents TItem="BusinessType" TValue="string"
+                                            ValueChange="@BusinessType_ChangeHandler">
+                        </DropDownListEvents>
+                        <DropDownListFieldSettings Value="ID" Text="Text"></DropDownListFieldSettings>
+                    </SfDropDownList>
+                </div>
+            </div>
+           
+            <div class="row material" style="margin-top:6px;">
+                <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                    <SfTextBox Multiline="true" CssClass="e-outline" Placeholder="Description" 
+                               Value="@_account.Description"
+                               FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                </div>
+               
+            </div>
+            <div class="row" style="margin-left: 1px; margin-right: 1px; margin-top: 6px;">
+                <hr/>
+            </div>
+            <div class="row material" style="margin-top:6px;margin-bottom: 6px;">
+                <div class="col-2" >
+                    <i class="icofont-contacts" style="font-size: 18px;"></i><spam >&nbsp; Contacts</spam>
+                </div>
+            </div>
+            <div class="row material" style="margin-top:10px;">
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <SfTextBox CssClass="e-outline" Placeholder="Contact Number" 
+                               Value="@_account.Phone"
+                               Type="InputType.Number"
+                               FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <SfTextBox CssClass="e-outline" Placeholder="Email" 
+                               Value="@_account.Email"
+                               Type="InputType.Email"
+                               FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                    <SfTextBox CssClass="e-outline" Placeholder="Website"  
+                               Value="@_account.WebSite"
+                               Type="InputType.URL"
+                               FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                </div>
+            </div>
+            
+            <div class="row" style="margin-left: 1px; margin-right: 1px; margin-top: 6px;">
+                <hr/>
+            </div>
+            
+            <div class="row material" style="margin-top:6px;margin-bottom: 6px;">
+                <div class="col-2" >
+                    <i class="icofont-license" style="font-size: 18px;"></i><spam >&nbsp; Subscription</spam>
+                </div>
+            </div>
+            
+            <div class="row material" style="margin-top:10px;">
+                                            
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <SfDropDownList TValue="string" TItem="SubscriptionModel" Placeholder="Select a Subscription Model"
+                                    FloatLabelType="@FloatLabelType.Always"
+                                    CssClass="e-outline"
+                                    DataSource="@Subscriptions">
+                        <DropDownListEvents TItem="SubscriptionModel" TValue="string"
+                                            ValueChange="@Subscription_ChangeHandler" ></DropDownListEvents>
+                        <DropDownListFieldSettings Value="ID" Text="Text"></DropDownListFieldSettings>
+                    </SfDropDownList>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                    <SfDateTimePicker  CssClass="e-outline" Placeholder="Subscription Ends on"
+                                       Enabled="false"
+                                       Value="@_account.ActivationDate"
+                                       TValue="DateTime?" ></SfDateTimePicker>
+                   
+                </div>
+            </div>
+            
+            <div class="row material" style="margin-top:4px;">
+                <div class="col-12">
+                    <div class="float-end">
+                        <SfButton @onclick="onSubmitClick" IsPrimary="true">Submit</SfButton>
+                    </div>                     
+                </div>
+            </div>
+        </div>
+    </CardContent>
+    
+</SfCard>
+

@@ -1,0 +1,65 @@
+{
+  "BusinessCategory": [
+    {
+      "value": "Eduction",
+      "text": "Eduction"
+    },
+    {
+      "value": "Independent/COOP/Natural Product",
+      "text": "Independent/COOP/Natural Product"
+    },
+    {
+      "value": "Chain Natural Products Store",
+      "text": "Chain Natural Products Store"
+    },
+    {
+      "value": "Gourmet/Specialty Products",
+      "text": "Gourmet/Specialty Products"
+    },
+    {
+      "value": "Personal Care",
+      "text": "Personal Care"
+    },
+    {
+      "value": "Independent Grocer",
+      "text": "Independent Grocer"
+    },
+    {
+      "value": "Conventional Supermarket",
+      "text": "Conventional Supermarket"
+    },
+    {
+      "value": "Gift/Bookstore",
+      "text": "Gift/Bookstore"
+    },
+    {
+      "value": "Convenience Store",
+      "text": "Convenience Store"
+    },
+    {
+      "value": "Independent Drug Store/Pharmacy",
+      "text": "Independent Drug Store/Pharmacy"
+    },
+    {
+      "value": "Discount/Mass Merchandiser",
+      "text": "Discount/Mass Merchandiser"
+    },
+    {
+      "value": "Chain Drug Store/Pharmacy",
+      "text": "Chain Drug Store/Pharmacy"
+    },
+    {
+      "value": "Mail Order Catalog",
+      "text": "Mail Order Catalog"
+    },
+    {
+      "value": "Home and Textile",
+      "text": "Home and Textile"
+    },
+    {
+      "value": "Pet Supply Store/Grooming",
+      "text": "Pet Supply Store/Grooming"
+    }
+
+  ]
+}

@@ -1,0 +1,141 @@
+﻿<div class="top-row ps-4 navbar navbar-dark" >
+    <div class="container-fluid">
+        <a class="navbar-brand" href="" style="font-size: 24px;font-family: cursive;">
+                    <i class="icofont-butterfly-alt icofont-2x" 
+                    style="color: lightcoral; font-size: 28px;"></i> 
+                    Edu.Web
+        </a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>           
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="fetchdata">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Login" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Login
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Client-Account" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Account
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Settings" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Settings
+            </NavLink>
+        </div>
+        
+        <div class="nav-item px-3">
+            <SfAccordion>
+                <AccordionItems>
+                    <AccordionItem Expanded="true">
+                    <HeaderTemplate>
+                        <div style="padding-top:5px;">
+                            <i class="icofont-ui-settings icofont-1x"
+                                style="font-size: 24px;color:chocolate;">
+                            </i>&nbsp; &nbsp;Settings
+                        </div>
+                    </HeaderTemplate>
+                    
+                        <ContentTemplate>
+                            <NavLink class="nav-link" href="Settings" Match="NavLinkMatch.All">
+                                <span class="oi oi-home" aria-hidden="true"></span> Item 1
+                            </NavLink>
+                             <NavLink class="nav-link" href="Settings" Match="NavLinkMatch.All">
+                                <span class="oi oi-home" aria-hidden="true"></span> Item 2
+                            </NavLink>
+                             <NavLink class="nav-link" href="Settings" Match="NavLinkMatch.All">
+                                <span class="oi oi-home" aria-hidden="true"></span> Item 3
+                            </NavLink>
+                        </ContentTemplate>
+                    </AccordionItem>
+                </AccordionItems>
+            </SfAccordion>
+        </div>
+         <div class="nav-item px-3">
+            <SfAccordion>
+                <AccordionItems>
+                    <AccordionItem Expanded="false">
+                    <HeaderTemplate>
+                        <div style="padding-top:5px;">
+                            <i class="icofont-vehicle-delivery-van ico-size24px"
+                                style="color:lawngreen;">
+                            </i>&nbsp; &nbsp;Travel
+                        </div>
+                    </HeaderTemplate>
+                    
+                        <ContentTemplate>
+                            <NavLink class="nav-link" href="Settings" Match="NavLinkMatch.All">
+                                <span class="oi oi-home" aria-hidden="true"></span> Item 1
+                            </NavLink>
+                             <NavLink class="nav-link" href="Settings" Match="NavLinkMatch.All">
+                                <span class="oi oi-home" aria-hidden="true"></span> Item 2
+                            </NavLink>
+                             <NavLink class="nav-link" href="Settings" Match="NavLinkMatch.All">
+                                <span class="oi oi-home" aria-hidden="true"></span> Item 3
+                            </NavLink>
+                        </ContentTemplate>
+                    </AccordionItem>
+                </AccordionItems>
+            </SfAccordion>
+        </div>
+        
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+}
+<style>
+
+    .e-accordion .e-acrdn-item {
+        text-align: left;
+        background-color: inherit;
+        border: 0px solid inherit
+    }
+    .e-accordion{
+        border: 0px solid inherit;
+    }
+    .e-athletics::before {
+        content: "\e715";
+    }
+    .e-acrdn-icons {
+        font-family: 'acrdn-icons';
+        font-size: 16px;
+    }
+    .e-acrdn-icons:not(.e-icons) {
+        padding: 0 16px 0 0;
+        vertical-align: middle;
+    }
+    .ico-size24px {
+        font-size: 24px;
+    }
+    
+</style>

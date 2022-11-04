@@ -1,0 +1,150 @@
+﻿@page "/Inputs"
+@using FC.Edu.Domain
+@using MudInputType = MudBlazor.InputType
+
+
+<MudPaper Square="true" Class="pa-4">
+    
+	<MudCard>
+        <MudCardHeader>
+            <CardHeaderAvatar>
+                 <img src="svg/client.svg" Height="45" Width="45" alt="client avatar" />
+                @*<MudIcon  Icon="@Icons.Material.Filled.Settings" Color="Color.Default" />*@
+            </CardHeaderAvatar>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">Istra Croatia</MudText>
+                <MudText Typo="Typo.caption">Peninsula in Europe</MudText>               
+            </CardHeaderContent>
+            <CardHeaderActions>
+                <MudIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Default" />
+            </CardHeaderActions>
+        </MudCardHeader>
+
+        <MudDivider Style="margin-left:8px; margin-right:8px;"/>
+
+        <MudCardContent>
+            <EditForm Model="@_account" OnValidSubmit="@ValidSubmit">
+                <DataAnnotationsValidator />
+                <MudGrid>
+                    <MudItem xs="4">
+                        <SfTextBox CssClass="e-outline" Placeholder="Account Name"
+                                   @bind-Value="@_account.BusinessName"
+                                   FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                        <ValidationMessage For="@(() => _account.BusinessName)"/>
+                    </MudItem>
+                    <MudItem xs="4">
+                        <SfDropDownList TValue="string" TItem="BusinessType" Placeholder="Select a Business Type"
+                                        FloatLabelType="@FloatLabelType.Always"
+                                        CssClass="e-outline"
+                                        DataSource="@_businessTypes">
+                            <DropDownListEvents TItem="BusinessType" TValue="string"
+                                                ValueChange="@BusinessType_ChangeHandler">
+                            </DropDownListEvents>
+                            <DropDownListFieldSettings Value="ID" Text="Text"></DropDownListFieldSettings>
+                        </SfDropDownList>
+                        <ValidationMessage For="@(() => _account.BusinessType)" />
+                    </MudItem>
+                    
+                    <MudItem xs="12">
+                         <SfTextBox Multiline="true" CssClass="e-outline" Placeholder="Description"
+                                   Value="@_account.Description"
+                                   FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                    </MudItem>
+                    
+                    <MudItem xs="12">
+                       
+                    </MudItem>
+                </MudGrid>
+                <div class="content-wrapper">
+                   
+                    <div class="row" style="margin-left: 1px; margin-right: 1px; margin-top: 6px;">
+                        <hr/>
+                    </div>
+                    <div class="row material" style="margin-top:6px;margin-bottom: 6px;">
+                        <div class="col-2" >
+                            <i class="icofont-contacts" style="font-size: 18px;"></i><spam >&nbsp; Contacts</spam>
+                        </div>
+                    </div>
+                    <div class="row material" style="margin-top:10px;">
+                        <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                            <SfTextBox CssClass="e-outline" Placeholder="Contact Number"
+                                       Value="@_account.Phone"
+                                       Type="Syncfusion.Blazor.Inputs.InputType.Number"
+                                       FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                            <SfTextBox CssClass="e-outline" Placeholder="Email"
+                                       Value="@_account.Email"
+                                       Type="Syncfusion.Blazor.Inputs.InputType.Email"
+                                       FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                            <SfTextBox CssClass="e-outline" Placeholder="Website"
+                                       Value="@_account.WebSite"
+                                       Type="Syncfusion.Blazor.Inputs.InputType.URL"
+                                       FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                        </div>
+                    </div>
+                    
+                    <div class="row" style="margin-left: 1px; margin-right: 1px; margin-top: 6px;">
+                        <hr/>
+                    </div>
+                    
+                    <div class="row material" style="margin-top:6px;margin-bottom: 6px;">
+                        <div class="col-2" >
+                            <i class="icofont-license" style="font-size: 18px;"></i><spam >&nbsp; Subscription</spam>
+                        </div>
+                    </div>
+                    
+                    <div class="row material" style="margin-top:10px;">
+                    
+                        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                            <SfDropDownList TValue="string" TItem="SubscriptionModel" Placeholder="Select a Subscription Model"
+                                            FloatLabelType="@FloatLabelType.Always"
+                                            CssClass="e-outline"
+                                            DataSource="@Subscriptions">
+                                <DropDownListEvents TItem="SubscriptionModel" TValue="string"
+                                                    ValueChange="@Subscription_ChangeHandler" ></DropDownListEvents>
+                                <DropDownListFieldSettings Value="ID" Text="Text"></DropDownListFieldSettings>
+                            </SfDropDownList>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                            <SfDateTimePicker  CssClass="e-outline" Placeholder="Subscription Ends on"
+                                               Enabled="false"
+                                               Value="@_account.ActivationDate"
+                                               TValue="DateTime?" ></SfDateTimePicker>
+                    
+                        </div>
+                    </div>
+                    
+                    <div class="row material" style="margin-top:4px;">
+                        <div class="col-12">
+                            <div class="float-end">
+                               <SfButton HtmlAttributes="@Submit" IsPrimary="true">Submit</SfButton> 
+                                
+                            </div>                     
+                        </div>
+                    </div>
+                </div>
+                
+            </EditForm>
+        </MudCardContent>
+        <MudCardActions>
+            <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" />
+            <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" />
+        </MudCardActions>
+    </MudCard>
+</MudPaper>
+
+
+<style>
+    .validation-message {
+            color: #f44336;
+            font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif", "-apple-system", "BlinkMacSystemFont";
+            font-size: 12px;
+            font-weight: normal;
+        }
+       
+        
+</style>
+

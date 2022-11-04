@@ -1,0 +1,36 @@
+﻿@page "/Address-Section"
+@* @using FC.BlazorWeb.Components *@
+@using FC.BlazorWeb.Model
+@using System.Text.Json;
+@using System.Text.Json.Serialization
+@using FC.Edu.Domain.Settings
+
+<h3>Address Section Page</h3>
+
+<div>
+    <AddressSection @ref="_addressSection" CardTitle="Student Address"  GetAddressModel="_addressModel" />
+    
+    <SfButton type="submit" CssClass="e-btn e-outline e-primary" 
+              @onclick="ActionOnClick" >Submit & Validate </SfButton> 
+</div>
+@code {
+    private string _cardTile = "Address Section";
+    Address _addressModel = new Address();
+    AddressSection _addressSection;
+    
+    private async Task ActionOnClick()
+    {
+        if (_addressSection.CanSubmit())
+        {
+            Console.WriteLine($"Address Data {JsonSerializer.Serialize(_addressModel)}");
+            Console.WriteLine("Validation Passed");
+        }
+        else
+        {
+            Console.WriteLine("Validation Failed.");
+        }
+       
+
+    }
+
+}

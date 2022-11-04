@@ -1,0 +1,169 @@
+﻿
+@using Syncfusion.Blazor.Navigations
+
+@* <div class="top-row ps-3 navbar navbar-dark"  *@
+@*      style="border-bottom: 1px solid #586376; position: fixed; z-index: 100;"> *@
+@*     <div class="container-fluid"> *@
+@*         <a class="navbar-brand" href="" style="font-size: 24px;font-family: cursive;"> *@
+@*             <i class="icofont-butterfly-alt icofont-2x" style="color: lightcoral; font-size: 28px;"></i>  *@
+@*             Edu.Web *@
+@*         </a> *@
+@*         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu"> *@
+@*             <SfIcon Name="IconName.Justify"></SfIcon> *@
+@*         </button> *@
+@*     </div> *@
+@* </div> *@
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="fetchdata">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            
+            <div >
+                <SfTreeView TValue="TreeItem">
+                    <TreeViewFieldsSettings DataSource="@TreeDataSource" Id="NodeId" Text="NodeText" Expanded="Expanded" Child="@("Child")"></TreeViewFieldsSettings>
+                </SfTreeView>
+            </div>
+
+        </div>
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+    
+    List<TreeItem> TreeDataSource = new List<TreeItem>();
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        TreeDataSource.Add(new TreeItem
+        {
+            NodeId = "01",
+            NodeText = "Local Disk (C:)",
+            Expanded = true,
+            Child = new List<TreeItem>()
+            {
+                new TreeItem { NodeId = "01-01", NodeText = "Program Files",
+                    Child = new List<TreeItem>()
+                    {
+                        new TreeItem { NodeId = "01-01-01", NodeText = "Windows NT" },
+                        new TreeItem { NodeId = "01-01-02", NodeText = "Windows Mail" },
+                        new TreeItem { NodeId = "01-01-03", NodeText = "Windows Photo Viewer" }
+                    },
+                },
+                new TreeItem { NodeId = "01-02", NodeText = "Users", Expanded = true,
+                    Child = new List<TreeItem>()
+                    {
+                        new TreeItem { NodeId = "01-02-01", NodeText = "Smith" },
+                        new TreeItem { NodeId = "01-02-02", NodeText = "Public" },
+                        new TreeItem { NodeId = "01-02-03", NodeText = "Admin" },
+                    },
+                },
+                new TreeItem { NodeId = "01-03", NodeText = "Windows",
+                    Child = new List<TreeItem>()
+                    {
+                        new TreeItem { NodeId = "01-03-01", NodeText = "Boot" },
+                        new TreeItem { NodeId = "01-03-02", NodeText = "Media" },
+                        new TreeItem { NodeId = "01-03-03", NodeText = "System32" },
+                    }
+                },
+            },
+        });
+        TreeDataSource.Add(new TreeItem
+        {
+            NodeId = "02",
+            NodeText = "Local Disk (D:)",
+            Child = new List<TreeItem>()
+            {
+                new TreeItem { NodeId = "02-01", NodeText = "Personals",
+                    Child = new List<TreeItem>()
+                    {
+                        new TreeItem { NodeId = "02-01-01", NodeText = "My photo.png" },
+                        new TreeItem { NodeId = "02-01-02", NodeText = "Rental document.docx" },
+                        new TreeItem { NodeId = "02-01-03", NodeText = "Payslip.pdf" },
+                    },
+                },
+                new TreeItem { NodeId = "02-02", NodeText = "Projects",
+                    Child = new List<TreeItem>()
+                    {
+                        new TreeItem { NodeId = "02-02-01", NodeText = "Blazor Application " },
+                        new TreeItem { NodeId = "02-02-02", NodeText = "TypeScript Application" },
+                        new TreeItem { NodeId = "02-02-03", NodeText = "React Application" },
+                    }
+                },
+                new TreeItem { NodeId = "02-03", NodeText = "Office",
+                    Child = new List<TreeItem>()
+                    {
+                        new TreeItem { NodeId = "02-03-01", NodeText = "Work details.docx " },
+                        new TreeItem { NodeId = "02-03-02", NodeText = "Weekly report.docx" },
+                        new TreeItem { NodeId = "02-03-03", NodeText = "Wishlist.csv" },
+                    }
+                },
+            },
+        });
+        TreeDataSource.Add(new TreeItem
+        {
+            NodeId = "03",
+            NodeText = "Local Disk (E:)",
+            Child = new List<TreeItem>()
+            {
+                new TreeItem { NodeId = "03-01", NodeText = "Pictures",
+                    Child = new List<TreeItem>()
+                    {
+                        new TreeItem { NodeId = "03-01-01", NodeText = "Wind.jpg " },
+                        new TreeItem { NodeId = "03-01-02", NodeText = "Stone.jpg" },
+                        new TreeItem { NodeId = "03-01-03", NodeText = "Home.jpg" },
+                    }
+                },
+                new TreeItem { NodeId = "03-02", NodeText = "Documents", Icon = "docx",
+                    Child = new List<TreeItem>()
+                    {
+                        new TreeItem { NodeId = "03-02-01", NodeText = "Environment Pollution.docx " },
+                        new TreeItem { NodeId = "03-02-02", NodeText = "Global Warming.ppt" },
+                        new TreeItem { NodeId = "03-02-03", NodeText = "Social Network.pdf" },
+                    },
+                },
+                new TreeItem { NodeId = "03-03", NodeText = "Study Materials",
+                    Child = new List<TreeItem>()
+                    {
+                        new TreeItem { NodeId = "03-03-01", NodeText = "UI-Guide.pdf" },
+                        new TreeItem { NodeId = "03-03-02", NodeText = "Tutorials.zip" },
+                        new TreeItem { NodeId = "03-03-03", NodeText = "TypeScript.7z" },
+                    }
+                },
+            },
+        });
+    }
+
+    class TreeItem
+    {
+        public string NodeId { get; set; }
+        public string NodeText { get; set; }
+        public string Icon { get; set; }
+        public bool Expanded { get; set; }
+        public bool Selected { get; set; }
+        public List<TreeItem> Child { get; set; }
+    }
+}
+

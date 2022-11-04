@@ -1,0 +1,103 @@
+﻿@using Syncfusion.Blazor.Data
+@using Syncfusion.Blazor.DropDowns
+@using System.Security.Cryptography.X509Certificates
+@using FC.Edu.Domain
+@using FC.Edu.Domain.Settings
+
+@inject HttpClient _http
+
+<h3>Address Section</h3>
+
+<div class="control-section">
+    @if (GetAddressModel != null)
+    {
+        <EditForm @ref="addressForm" Model="@GetAddressModel">
+            <DataAnnotationsValidator/>
+
+            <SfCard ID="addressCard">
+                <CardHeader Title="@CardTitle"/>
+                <CardContent EnableSeparator="true">
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <SfTextBox Placeholder="Address Line 1"
+                                       @bind-Value="@GetAddressModel.AddressLine_1"
+                                       FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                            <ValidationMessage For="@(() => GetAddressModel.AddressLine_1)"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <SfTextBox Placeholder="Address Line 2"
+                                       @bind-Value="@GetAddressModel.AddressLine_2"
+                                       FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                            <ValidationMessage For="@(() => GetAddressModel.AddressLine_2)"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <SfAutoComplete TValue="string" TItem="Country" Placeholder="Select Country"
+                                            ShowPopupButton="true" Highlight="true"
+                                            @bind-Value="@GetAddressModel.SelectedCountry.Name"
+                                            FloatLabelType="FloatLabelType.Auto"
+                                            DataSource="_countries" Autofill="false" >
+                                <AutoCompleteFieldSettings Value="Name"></AutoCompleteFieldSettings>
+                                <AutoCompleteEvents TItem="Country" TValue="string" ValueChange="@SelectedCountry"></AutoCompleteEvents>
+                            </SfAutoComplete>
+                            <ValidationMessage For="@(() => GetAddressModel.SelectedCountry.Name)"/>
+                        </div>
+                        <div class="col-sm-4">
+                            <SfAutoComplete TValue="string" TItem="State" Placeholder="Select State"
+                                            ShowPopupButton="true" Highlight="true"
+                                            @bind-Value="@GetAddressModel.SelectedState.Name"
+                                            FloatLabelType="FloatLabelType.Auto"
+                                            DataSource="_states" Autofill="false" >
+                                <AutoCompleteFieldSettings Value="Name"></AutoCompleteFieldSettings>
+                                <AutoCompleteEvents TItem="State" TValue="string" ValueChange="@SelectedState"></AutoCompleteEvents>
+                            </SfAutoComplete>
+                            <ValidationMessage For="@(() => GetAddressModel.SelectedState.Name)"/>
+                        </div>
+                        <div class="col-sm-4">
+                            <SfAutoComplete TValue="string" TItem="City" Placeholder="Select Cities"
+                                            ShowPopupButton="true" Highlight="true"
+                                            @bind-Value="@GetAddressModel.SelectedCity.Name"
+                                            FloatLabelType="FloatLabelType.Auto"
+                                            DataSource="_cities" Autofill="false"  >
+                                <AutoCompleteFieldSettings Value="Name"></AutoCompleteFieldSettings>
+                                <AutoCompleteEvents TItem="City" TValue="string" ValueChange="@SelectedCity"></AutoCompleteEvents>
+                            </SfAutoComplete>
+                            <ValidationMessage For="@(() => GetAddressModel.SelectedCity.Name)"/>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <SfTextBox ID="cityPinCode" Placeholder="City PinCode"
+                                       @bind-Value="@GetAddressModel.PinCode"
+                                       FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                            <ValidationMessage For="@(() => GetAddressModel.PinCode)"/>
+                        </div>
+                        <div class="col-sm-4">
+                            <SfTextBox ID="phoneNumber" Placeholder="Mobile/Phone"
+                                       @bind-Value="@GetAddressModel.MobileNumber"
+                                       FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                            <ValidationMessage For="@(() => GetAddressModel.MobileNumber)"/>
+                        </div>
+                        <div class="col-sm-4">
+                            <SfTextBox ID="email" Placeholder="Email Id"
+                                       @bind-Value="@GetAddressModel.EmailId"
+                                       FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+                            <ValidationMessage For="@(() => GetAddressModel.EmailId)"/>
+                        </div>
+                    </div>
+                    
+                </CardContent>
+                <CardFooter >
+                    <CardFooterContent>
+
+                    </CardFooterContent>
+                </CardFooter>
+            </SfCard>
+        </EditForm>
+    }
+</div>
+

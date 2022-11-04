@@ -1,0 +1,41 @@
+{
+	"BusinessType": [
+		{
+			"value": "Public Limited Company",
+			"text": "Public Limited Company"
+		},
+		{
+			"value": "Private Limited Company",
+			"text": "Private Limited Company"
+		},
+		{
+			"value": "Joint-Venture Company",
+			"text": "Joint-Venture Company"
+		},
+		{
+			"value": "Partnership Firm",
+			"text": "Partnership Firm"
+		},
+		{
+			"value": "One Person Company",
+			"text": "One Person Company"
+		},
+		{
+			"value": "Sole Proprietorship",
+			"text": "Sole Proprietorship"
+		},
+		{
+			"value": "Branch Office",
+			"text": "Branch Office"
+		},
+		{
+			"value": "Non-Government Organization (NGO)",
+			"text": "Non-Government Organization (NGO)"
+		},
+		{
+			"value": "Other",
+			"text": "Other"
+		}
+	]
+}
+

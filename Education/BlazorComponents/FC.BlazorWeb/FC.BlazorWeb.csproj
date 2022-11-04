@@ -1,0 +1,71 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BlazorIndexedDB" Version="0.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
+    <PackageReference Include="Syncfusion.Blazor.Cards" Version="19.4.0.56" />
+	    <PackageReference Include="Syncfusion.Blazor.DropDowns" Version="19.4.0.56" />
+    <PackageReference Include="Syncfusion.Blazor.Navigations" Version="19.4.0.56" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\" />
+    <Folder Include="Utility" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FC.BlazorRCL\FC.BlazorRCL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="FireCloud.BlazorApp\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="FireCloud.BlazorApp\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="FireCloud.BlazorApp\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="FireCloud.BlazorApp\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\App.razor" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\Pages\Counter.razor" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\Pages\FetchData.razor" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\Pages\Index.razor" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\Shared\MainLayout.razor" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\Shared\NavMenu.razor" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\Shared\SurveyPrompt.razor" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\_Imports.razor" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\bin\Debug\net6.0\FireCloud.BlazorApp.staticwebassets.runtime.json" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\bin\Debug\net6.0\wwwroot\_framework\blazor.boot.json" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\obj\Debug\net6.0\blazor.boot.json" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\obj\Debug\net6.0\staticwebassets.build.json" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\obj\Debug\net6.0\staticwebassets.development.json" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\obj\FireCloud.BlazorApp.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\obj\project.packagespec.json" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\Properties\launchSettings.json" />
+    <_ContentIncludedByDefault Remove="FireCloud.BlazorApp\wwwroot\sample-data\weather.json" />
+  </ItemGroup>
+  
+  
+
+</Project>
